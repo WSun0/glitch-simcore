@@ -1,19 +1,18 @@
-this is# Computer Vision Art Engine
+# Computer Vision Art Engine
 
-A computer-vision-inspired art engine that overlays abstract point networks and cryptic numerical tags on live video. Designed for an alt/simulation-core aesthetic — minimal, eerie, and raw, rather than flashy.
+A computer-vision-inspired art engine that overlays abstract point networks and cryptic numerical tags on live video. Creates a "cold machine perception" aesthetic — like a computer vision system leaking into reality.
 
-## Overview
+## What It Does
 
-This engine takes a webcam or video feed and overlays abstract dots and connections that focus on the subjects in the frame. The overlay looks like a machine analyzing reality: numerical tags, minimal lines, floating nodes. The effect avoids "video game glitch" clichés in favor of a "cold machine perception" or "unsettling computer vision leak" aesthetic.
+Takes your webcam or video feed and overlays abstract dots and connections that track subjects in the frame. The effect looks like a machine analyzing reality: numerical tags, minimal lines, floating nodes. Avoids flashy "video game glitch" effects in favor of something more unsettling and raw.
 
-## Features
+## Key Features
 
-- **Minimalistic Design**: Thin lines, small dots, subdued colors (white, pale gray, muted orange, soft neon green)
-- **Dynamic Placement**: Points track subject features using MediaPipe pose detection and segmentation
 - **Imperfection**: Slight drift, flicker, and missing points for a raw, unpolished feel
 - **Numerical Overlays**: Each dot gets a random number label, rotated or half-clipped
 - **Evolving Networks**: Thin lines connect dots to form dynamic graphs that change over time
-- **Motion Influence**: Dots cluster around moving subjects using optical flow
+- **Random Shapes & Colors**: Dots are circles or squares with random sizes and colors
+- **Motion Tracking**: Dots cluster around detected subjects using pose detection
 
 ## Installation
 
@@ -68,40 +67,13 @@ overlay:
   # ... more options
 ```
 
-## Project Structure
-
-```
-glitch-simcore/
-├── src/
-│   ├── main.py                  # Entry point
-│   ├── config.yaml              # Configuration
-│   ├── overlay/
-│   │   ├── dots.py              # Point generation
-│   │   ├── lines.py             # Graph connections
-│   │   ├── labels.py            # Number overlays
-│   │   └── style.py             # Color palettes
-│   └── tracking/
-│       ├── pose.py              # MediaPipe keypoints
-│       └── mask.py              # Segmentation mask
-├── requirements.txt
-└── README.md
-```
-
-## Technical Details
-
-- **Pose Detection**: Uses MediaPipe for real-time pose keypoint detection
-- **Segmentation**: MediaPipe selfie segmentation for subject isolation
-- **Overlay System**: Modular design with separate components for dots, lines, and labels
-- **Motion Tracking**: Optical flow integration for motion-biased dot placement
-- **Temporal Effects**: Connections fade in/out, dots have lifetimes, flicker effects
-
 ## Dependencies
 
 - OpenCV 4.8.1+ for video processing
-- MediaPipe 0.10.7+ for pose detection and segmentation
+- MediaPipe 0.10.7+ for pose detection and segmentation (falls back to OpenCV if unavailable)
 - NumPy for numerical operations
 - PyYAML for configuration management
 
 ## License
 
-[Add your license here]
+MIT License - see LICENSE file for details.
