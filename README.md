@@ -58,7 +58,7 @@ Edit `src/config.yaml` to customize the overlay behavior:
 
 ```yaml
 overlay:
-  num_dots: 35                    # Number of dots to display
+  num_dots: 35                   # Number of dots to display
   dot_radius: [2, 4]             # Random radius range
   dot_color: [200, 200, 200]     # Gray/white color
   line_density: 0.3              # Fraction of dots connected
@@ -73,7 +73,3 @@ overlay:
 - MediaPipe 0.10.7+ for pose detection and segmentation (falls back to OpenCV if unavailable)
 - NumPy for numerical operations
 - PyYAML for configuration management
-
-## License
-
-MIT License - see LICENSE file for details.
