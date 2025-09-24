@@ -1,0 +1,57 @@
+overlay:
+  num_dots: 25  # Reduced for better performance
+  dot_radius: [2, 4]  # random range
+  dot_color: [200, 200, 200]  # gray/white
+  num_labels: true
+  label_fontscale: 0.4
+  line_density: 0.3  # fraction of dots connected
+  line_color: [180, 180, 180]
+  line_thickness: 1
+  drift: 2  # pixels jitter per frame
+  fade_alpha: 0.8  # layering transparency
+  
+  # Random shape and size settings
+  shape_types: ["circle", "square"]  # Available shapes
+  size_range: [1, 15]  # Random size range (radius for circles, half-edge for squares)
+  size_bias: 0.8  # Bias toward smaller sizes (0.0-1.0, higher = more small sizes)
+  
+  # Random color settings
+  color_palette: [
+    [200, 200, 200],  # Light gray
+    [180, 180, 180],  # Medium gray
+    [160, 160, 160],  # Darker gray
+    [220, 220, 220],  # Very light gray
+    [100, 255, 100],  # Soft neon green
+    [255, 150, 100],  # Muted orange
+    [150, 200, 255],  # Soft blue
+    [255, 200, 150],  # Soft peach
+  ]
+  
+  # Additional styling options
+  highlight_color: [100, 255, 100]  # soft neon green
+  accent_color: [255, 150, 100]  # muted orange
+  label_rotation: true
+  label_clipping: 0.3  # fraction of labels that are half-clipped
+  
+  # Motion influence
+  motion_bias: true
+  motion_sensitivity: 0.5
+  
+  # Temporal effects
+  connection_fade_frames: 10
+  dot_lifetime: 30  # frames before dot disappears
+  flicker_probability: 0.1
+
+tracking:
+  pose_confidence: 0.5
+  segmentation_confidence: 0.5
+  keypoint_jitter: 3  # pixels of random jitter around keypoints
+  mask_expansion: 1.2  # expand subject mask by this factor
+
+performance:
+  target_fps: 60  # Target framerate
+  max_resolution: [1920, 1080]  # Maximum resolution
+  detection_skip_frames: 2  # Process every Nth frame for detection (2 = every other frame)
+  overlay_quality: "medium"  # high, medium, low
+  dot_update_skip_frames: 1  # Update dots every Nth frame (1 = every frame)
+  connection_update_skip_frames: 3  # Update connections every Nth frame (3 = every 3rd frame)
