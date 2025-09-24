@@ -12,7 +12,7 @@ Takes your webcam or video feed and overlays abstract dots and connections that 
 - **Numerical Overlays**: Each dot gets a random number label, rotated or half-clipped
 - **Evolving Networks**: Thin lines connect dots to form dynamic graphs that change over time
 - **Random Shapes & Colors**: Dots are circles or squares with random sizes and colors
-- **Motion Tracking**: Dots cluster around detected subjects using pose detection
+- **Smart Tracking**: People-first detection with adaptive keypoint density for clean, focused overlays
 
 ## Installation
 
@@ -58,17 +58,39 @@ Edit `src/config.yaml` to customize the overlay behavior:
 
 ```yaml
 overlay:
-  num_dots: 35                   # Number of dots to display
+  num_dots: 12                   # Number of dots (reduced for cleaner look)
   dot_radius: [2, 4]             # Random radius range
   dot_color: [200, 200, 200]     # Gray/white color
   line_density: 0.3              # Fraction of dots connected
-  drift: 2                       # Pixels of jitter per frame
+  drift: 4                       # Pixels of jitter per frame (increased for movement)
   fade_alpha: 0.8                # Transparency level
 ```
 
+## Smart Tracking Features
+
+The engine includes intelligent computer vision tracking that prioritizes people and body parts:
+
+- **People-First Detection**: HOG-based person detection with body keypoints (head, torso, arms)
+- **Facial Feature Tracking**: Eyes, nose, and facial landmarks with reduced keypoint density
+- **Hand & Arm Detection**: Multiple methods including cascade classifiers and skin color detection
+- **Motion-Aware**: Real-time motion detection that only activates when no people are detected
+- **Object Detection**: Contour-based detection as fallback when few people are present
+- **Adaptive Keypoint Density**: Automatically reduces keypoints to prevent visual clutter
+
+## Performance & Quality
+
+The engine is optimized for smooth, responsive performance:
+
+- **Reduced Node Count**: Only 12 dots for clean, uncluttered visuals
+- **People-First Priority**: Dots cluster around people, not static objects
+- **Increased Movement**: Higher drift (4px) creates more dynamic, less "tethered" effects
+- **Longer Dot Lifetime**: 60 frames for sustained visual presence
+- **Smart Detection**: Objects only detected when no people present
+- **Frame Skipping**: Optimized detection frequency for 60 FPS target
+
 ## Dependencies
 
-- OpenCV 4.8.1+ for video processing
+- OpenCV 4.8.1+ for video processing and computer vision
 - MediaPipe 0.10.7+ for pose detection and segmentation (falls back to OpenCV if unavailable)
 - NumPy for numerical operations
 - PyYAML for configuration management

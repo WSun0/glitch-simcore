@@ -15,10 +15,16 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 try:
     from tracking.pose import PoseTracker
     MEDIAPIPE_AVAILABLE = True
+    print("Using MediaPipe pose detection")
 except ImportError:
-    from tracking.pose_fallback import FallbackPoseTracker as PoseTracker
-    MEDIAPIPE_AVAILABLE = False
-    print("MediaPipe not available, using OpenCV fallback")
+    try:
+        from tracking.smart_pose import SmartPoseTracker as PoseTracker
+        MEDIAPIPE_AVAILABLE = False
+        print("Using advanced OpenCV pose detection")
+    except ImportError:
+        from tracking.pose_fallback import FallbackPoseTracker as PoseTracker
+        MEDIAPIPE_AVAILABLE = False
+        print("Using basic OpenCV fallback")
 
 from tracking.mask import MaskProcessor
 from overlay.dots import DotGenerator

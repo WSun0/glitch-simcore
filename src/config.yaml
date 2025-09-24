@@ -1,5 +1,5 @@
 overlay:
-  num_dots: 25  # Reduced for better performance
+  num_dots: 12  # Significantly reduced for cleaner look
   dot_radius: [2, 4]  # random range
   dot_color: [200, 200, 200]  # gray/white
   num_labels: true
@@ -7,7 +7,7 @@ overlay:
   line_density: 0.3  # fraction of dots connected
   line_color: [180, 180, 180]
   line_thickness: 1
-  drift: 2  # pixels jitter per frame
+  drift: 4  # pixels jitter per frame (increased for more movement)
   fade_alpha: 0.8  # layering transparency
   
   # Random shape and size settings
@@ -39,7 +39,7 @@ overlay:
   
   # Temporal effects
   connection_fade_frames: 10
-  dot_lifetime: 30  # frames before dot disappears
+  dot_lifetime: 60  # frames before dot disappears (increased for longer life)
   flicker_probability: 0.1
 
 tracking:
@@ -47,6 +47,13 @@ tracking:
   segmentation_confidence: 0.5
   keypoint_jitter: 3  # pixels of random jitter around keypoints
   mask_expansion: 1.2  # expand subject mask by this factor
+  
+  # Advanced tracking parameters
+  min_contour_area: 500  # minimum area for object detection
+  motion_threshold: 30   # threshold for motion detection
+  skin_detection: true   # enable skin color detection for hands
+  object_detection: true # enable contour-based object detection
+  motion_detection: true # enable motion area detection
 
 performance:
   target_fps: 60  # Target framerate

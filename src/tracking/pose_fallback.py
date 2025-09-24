@@ -28,6 +28,13 @@ class FallbackPoseTracker:
             # Hand cascade not available, we'll skip hand detection
             self.hand_cascade = None
         
+        # Initialize additional detectors for better tracking
+        self.eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+        self.smile_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_smile.xml')
+        
+        # Object detection using contours and color analysis
+        self.min_contour_area = 500  # Minimum area for object detection
+        
     def detect_pose(self, frame: np.ndarray) -> Tuple[List[Tuple[int, int]], Optional[np.ndarray]]:
         """
         Detect pose using OpenCV's built-in features.
