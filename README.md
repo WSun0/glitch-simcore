@@ -64,7 +64,6 @@ overlay:
   line_density: 0.3              # Fraction of dots connected
   drift: 2                       # Pixels of jitter per frame
   fade_alpha: 0.8                # Transparency level
-  # ... more options
 ```
 
 ## Dependencies
